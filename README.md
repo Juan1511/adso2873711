@@ -2,7 +2,7 @@
 
 ## TGO en Análisis y Desarrollo de Software
 
-![carro](http://tinyurl.com/mwpf56nd)
+![carro](http://tinyurl.com/a6tr8kkr)
 
 |tema|descripcion|
 |----|-----------|
