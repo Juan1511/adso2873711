@@ -9,6 +9,33 @@ background-size: cover;
     color: white;
 }
 
+nav.controls {
+    a:is(:link, :visited){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        background-color: #0009;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 50px;
+        transform: scale(0.8);
+        opacity: 0.6;
+        transition: all 0.4s ease-in;
+
+        
+       
+    }
+    a:is(:hover){
+        opacity: 1;
+        transform: scale(1);
+    }
+    svg{
+        width: 40px;
+    }
+}
+
 main{
     display: flex;
     flex-direction: column;
@@ -72,4 +99,32 @@ main{
             transform: scale(1.4) rotateY(360deg);
         }
     }
+    section{
+        border-radius: 10px;
+        color: #fff;
+        padding: 10px;
+        background-color: #0008;
+        width: 400PX;
+
+        h3{
+            color: 0006;
+            font-size: 1.3rem;
+            margin: 0;
+            border-bottom: 2px dotted #ffff;
+            width: fit-content;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        xmp {
+            border-radius: 10px;
+            background-color: #0009;
+            color: #ffff;
+            padding: 0 10px 10px 10px ;
+        }
+    }
+
 }
