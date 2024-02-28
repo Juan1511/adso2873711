@@ -99,6 +99,9 @@ main{
             transform: scale(1.4) rotateY(360deg);
         }
     }
+    .thechallenge{
+        width: 1000px;
+    }
     section{
         border-radius: 10px;
         color: #fff;
