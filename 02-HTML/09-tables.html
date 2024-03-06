@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tables</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        table{
+            border-collapse: collapse;
+            color: #000;
+            font-size: 0.8rem;
+            tr{
+                th{
+                    background-color: #000;
+                    color: #fff;
+                    padding: 0.4rem;
+
+                }
+                td{
+                    background-color: #fff9;
+                    padding: 0.4rem 0.2rem;
+                }
+            }
+            tr:nth-child(even) td{
+                background-color: #fff;
+            }
+            tfoot{
+                td{
+                    background-color: #000;
+                    color: #fff;
+                    text-align: center;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>09 - tables</h1>
+            <h2>esta etiqueta permite crear una tabla</h2>
+        </header>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre completo</th>
+                        <th>Numero de telefono</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>homer simpson</td>
+                        <td>310000001</td>
+                        <td>homer@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>marge bouvier</td>
+                        <td>310000002</td>
+                        <td>marge@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>bart simpson</td>
+                        <td>310000003</td>
+                        <td>bart@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>lisa simpson</td>
+                        <td>310000004</td>
+                        <td>lisa@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>maguie simpson</td>
+                        <td>310000005</td>
+                        <td>maguie@gmail.com</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">simpson family</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+    </main>
+</body>
