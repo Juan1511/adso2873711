@@ -1,15 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>forms</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        div.block {
+            display: flex;
+            flex-direction: column;
+
+            div.input {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                h4 {
+                    margin: 0;
+                    width: 120px;
+                }
+            }
+        }
+
+        section {
+            nav {
+                width: fit-content;
+                margin: 10px auto;
+
+                a:is(:link, :visited) {
+                    background-color: #fff;
+                    color: #0009;
+                    padding: 8px;
+                    text-decoration: none;
+                    transition: all 0.4s ease-in;
+                }
+
+                a:is(:hover, :active) {
+                    background-color: #0009;
+                    color: #fff;
+                }
+
+                a:first-child {
+                    border-radius: 20px 0 0 20px;
+                }
+
+                a:last-child {
+                    border-radius: 0 20px 20px 0;
+
+                }
+            }
+
+            div#Elementos,
+            div#Ejemplos {
+                display: none;
+            }
+
+            div#Elementos:target,
+            div#Ejemplos:target {
+                display: block;
+            }
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            label{
+                padding: 0.8rem;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <nav class="controls">
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
 
         </a>
     </nav>
@@ -19,19 +91,154 @@
             <h2>esta etiqueta sirve para crear un formulario</h2>
         </header>
         <section>
-            <h3>inputs</h3>
-            <div class="block">
-                <h4>text</h4>
-                <input type="text">
+            <nav>
+                <a href="#Elementos">Elementos</a>
+                <a href="#Ejemplos">Ejemplos</a>
+            </nav>
+            <div class="block" id="Elementos">
+                <h3>inputs</h3>
+                <div class="input">
+                    <h4>Texto</h4>
+                    <input type="Texto">
+                </div>
+                <div class="input">
+                    <h4>Contraseña</h4>
+                    <input id="passw" type="Contraseña">
+                    <button id="toggle-option">Mostrar</button>
+                </div>
+                <div class="input">
+                    <h4>Numero</h4>
+                    <input type="Numero">
+                </div>
+                <div class="input">
+                    <h4>Rango</h4>
+                    <input type="range" min="0" max="100" step="25" oninput="per.value=this.value+'%'">
+                    <output id="per">0%</output>
+                </div>
+                <div class="input">
+                    <h4>Color</h4>
+                    <input type="Color" oninput="Color.value=this.value">
+                    <output id="Color"></output>
+                </div>
+                <div class="input">
+                    <h4>Fecha</h4>
+                    <input type="Fecha">
+                </div>
+                <div class="input">
+                    <h4>Hora</h4>
+                    <input type="Hora">
+                </div>
+                <div class="input">
+                    <h4>Semana</h4>
+                    <input type="Semana">
+                </div>
+                <div class="input">
+                    <h4>Buscar</h4>
+                    <input type="Buscar">
+                </div>
+                <div class="input">
+                    <h4>Archivo</h4>
+                    <input type="file">
+                </div>
+                <div class="input">
+                    <h4>Mes</h4>
+                    <input type="Mes">
+                </div>
+                <div class="input">
+                    <h4>Email</h4>
+                    <input type="Email">
+                </div>
+                <div class="input">
+                    <h4>Button</h4>
+                    <button>hola</button>
+                </div>
+                <div class="input">
+                    <h4>Submit</h4>
+                    <input type="submit">
+
+                </div>
+                <div class="input">
+                    <h4>Reset</h4>
+                    <input type="Reset" value="Reset">
+                </div>
+                <div class="input">
+                    <h4>Radio</h4>
+                    <input type="Radio" name="option" checked>
+                    <input type="Radio" name="option" checked>
+                </div>
+                <div class="input">
+                    <h4>Checkbox</h4>
+                    <input type="Checkbox" name="option1" checked>
+                    <input type="Checkbox" name="option2">
+                </div>
+                <H3>OTROS ELEMENTOS</H3>
+                <div class="input">
+                    <h4>progress</h4>
+                    <progress value="0.5"></progress>
+                </div>
+                <div class="input">
+                    <h4>Select</h4>
+                    <select name="gender">
+                        <option value="" selected>seleccionar genero...</option>
+                        <option value="Hombre">Hombre</option>
+                        <option value="Mujer">Mujer</option>
+                    </select>
+                </div>
+                <div class="input">
+                    <h4>Text area</h4>
+                    <textarea cols="20" rows="4"></textarea>
+                </div>
             </div>
-            <div class="block">
-                <h4>password</h4>
-                <input type="password">
-            </div>
-            <div class="block">
-                <h4>number</h4>
-                <input type="number">
+            <div id="Ejemplos">
+                <h3>Ejemplos de formulario</h3>
+                <form action="" method="post">
+                    <fieldset>
+                        <legend>
+                            <h4>Info personal</h4>
+                        </legend>
+                        <form action="" method="post">
+                            <label for="">
+                                fullname
+                                <input type="text" name="fullname" required>
+                            </label>
+                            <label for="">
+                                Email
+                                <input type="Email" name="Email" required>
+                            </label>
+                            <label for="">
+                                BirthDate
+                                <input type="Date" name="BirthDate">
+                            </label>
+                            <label for="">
+                                Gender
+                                <select name="Gender" required>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
+                            <label>
+                                <input type="submit" value="send data">
+                                <input type="reset" value="reset data">
+                            </label>
+                        </form>
+                    </fieldset>
+
+                </form>
             </div>
         </section>
     </main>
+    <script>
+        const toggleOpt = document.getElementById("toggle-option")
+        const pasw = document.getElementById("passw")
+
+        toggleOpt.addEventListener("click", () => {
+            if (toggleOpt.textContent == "Mostrar") {
+                toggleOpt.textContent = "ocultar";
+                passw.setAttribute("type", "text")
+            } else {
+                toggleOpt.textContent = "Mostrar"
+                passw.setAttribute("type", "password")
+
+            }
+        })
+    </script>
 </body>
