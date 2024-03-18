@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtributeStyles</title>
+    <title>advance-selectors</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        section[class] > p + p {
+            background: linear-gradient(to left, white, red);
+            color: white;
+            padding: 5px;
+        }
+
+    </style>
 </head>
 <body>
     <nav class="controls">
@@ -15,12 +23,18 @@
     </nav>
     <main>
         <header>
-            <h1>03 - AtributeStyles</h1>
-            <h2>De esta forma podemos incluir CSS dentro del atributo style en la etqueta HTML, es la forma menos recomendada</h2>
+            <h1>05 - advance-selectors</h1>
+            <ul>
+                <li>hijos (>)</li>
+                <li>adjacent/sibling (+)</li>
+                <li>attribute {class}</li>
+            </ul>
         </header>
-        <section>
-            <p style="background-color: white; color: black; border-radius: 1rem 0 1rem 0; text-align: center;padding: 10px; font-size: 3rem;">ADSO 2873711</p>
+        <section class="example">
+            <p>CPIC</p>
+            <p>regional caldas</p>
+
+
         </section>
-      
     </main>
 </body>

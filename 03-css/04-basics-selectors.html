@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtributeStyles</title>
+    <title>basic-selectors</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        section#section01 p.rotate{
+            font-size: 4rem;
+            text-align: center;
+            transform: rotate(-45deg);
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="controls">
@@ -15,12 +23,19 @@
     </nav>
     <main>
         <header>
-            <h1>03 - AtributeStyles</h1>
-            <h2>De esta forma podemos incluir CSS dentro del atributo style en la etqueta HTML, es la forma menos recomendada</h2>
+            <h1>04 - basic-selectors</h1>
+                <ul>
+                    <li>universa(*)</li>
+                    <li>type/tag(p)</li>
+                    <li>descendente(div.p)</li>
+                    <li>class(.important)</li>
+                    <li>ID(#cod389)</li>
+                    <li>combinar(div#user3 p.title)</li>
+                </ul>
         </header>
-        <section>
-            <p style="background-color: white; color: black; border-radius: 1rem 0 1rem 0; text-align: center;padding: 10px; font-size: 3rem;">ADSO 2873711</p>
+        <section id="section01">
+            <p class="rotate">SENA</p>
+
         </section>
-      
     </main>
 </body>

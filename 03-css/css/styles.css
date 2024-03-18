@@ -1,0 +1,8 @@
+p.title{
+    background-color: rgb(67, 220, 20);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 3rem;
+    border-radius: 1rem 0 1rem 0;
+}

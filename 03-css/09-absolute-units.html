@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtributeStyles</title>
+    <title>absolute_units</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        li.abs1{font-size: 0.5in;}
+        li.abs2{font-size: 1cm;}
+        li.abs3{font-size: 10mm;}
+        li.abs4{font-size: 10pt;}
+        li.abs5{font-size: 2pc;}
+    </style>
 </head>
 <body>
     <nav class="controls">
@@ -15,12 +22,17 @@
     </nav>
     <main>
         <header>
-            <h1>03 - AtributeStyles</h1>
-            <h2>De esta forma podemos incluir CSS dentro del atributo style en la etqueta HTML, es la forma menos recomendada</h2>
+            <h1>09 - absolute-units</h1>
+            <h2>especifica un valor fijo</h2>
         </header>
         <section>
-            <p style="background-color: white; color: black; border-radius: 1rem 0 1rem 0; text-align: center;padding: 10px; font-size: 3rem;">ADSO 2873711</p>
+            <ul>
+                <li class="abs1">inch: 1in</li>
+                <li class="abs2">cm: 1cm</li>
+                <li class="abs3">mm: 10mm </li>
+                <li class="abs4">pt: 10pt</li>
+                <li class="abs5">pc: 10pc</li>
+            </ul>
         </section>
-      
     </main>
 </body>

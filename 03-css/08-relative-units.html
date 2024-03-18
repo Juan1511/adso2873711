@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AtributeStyles</title>
+    <title>relative-units</title>
     <link rel="stylesheet" href="css/master.css">
+    <style>
+        html{font-size: 16px;}
+            li.rel1{font-size: 1.5em;}
+            li.rel2{font-size: 1.5ex;}
+            li.rel3{font-size: 1.5rem;}
+            li.rel4{font-size: 15px;}
+    </style>
 </head>
 <body>
     <nav class="controls">
@@ -15,12 +22,16 @@
     </nav>
     <main>
         <header>
-            <h1>03 - AtributeStyles</h1>
-            <h2>De esta forma podemos incluir CSS dentro del atributo style en la etqueta HTML, es la forma menos recomendada</h2>
+            <h1>08 - relative-units</h1>
+            <h2>especificar un lenguaje relativo o un lenguaje de propiedad</h2>
         </header>
         <section>
-            <p style="background-color: white; color: black; border-radius: 1rem 0 1rem 0; text-align: center;padding: 10px; font-size: 3rem;">ADSO 2873711</p>
+            <ul>
+                <li class="rel1">em: 1.5em</li>
+                <li class="rel2">ex: 1.5em</li>
+                <li class="rel3">rem: 1.5rem</li>
+                <li class="rel4">px: 1.5px</li>
+            </ul>
         </section>
-      
     </main>
 </body>
