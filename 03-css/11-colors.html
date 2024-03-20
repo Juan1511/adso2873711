@@ -3,33 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>colors</title>
+    <title>Colors</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
-        section.section{
-            width: 80%;
-        }
-        div.parent{
+        div.colors {
             display: flex;
-            height: 340px;
-            justify-content: center;
-            width: 100%;
-        }
-        div.parent div{
-            font-size: 4rem;
-            display: flex;
+            flex-direction: column;
             align-items: center;
+            margin: 20px 0;
+        }
+        div.colors div.row {
+            display: flex;
+        }
+
+        div.colors div.row div {
+            font-size: 0.8rem;
+            display: flex;
             justify-content: center;
-
+            align-items: center;
+            height: 80px;
+            width: 80px;
         }
-        div.parent div.child1{
-            background-color: cadetblue;
-            width: 60%;
+        div.colors div.row div.maroon { 
+            background-color: hsl(0, 100%, 25%); 
         }
-        div.parent div.child2{
-            background-color: darksalmon;
-            width: 40%;
-
+        div.colors div.row div.red { 
+            background-color: hsl(0, 100%, 50%); 
+        }
+        div.colors div.row div.orange { 
+            background-color: hsl(39, 100%, 50%); 
+        }
+        div.colors div.row div.yellow { 
+            background-color: hsl(60, 100%, 50%); 
+            color: black;
+        }
+        div.colors div.row div.olive { 
+            background-color: hsl(60, 100%, 25%); 
+        }
+        div.colors div.row div.purple { 
+            background-color: hsl(300, 100%, 25%); 
+        }
+        div.colors div.row div.fuchsia { 
+            background-color: hsl(300, 100%, 50%); 
+        }
+        div.colors div.row div.white { 
+            background-color: hsl(0, 0%, 100%); 
+            color: black;
+        }
+        div.colors div.row div.lime { 
+            background-color: hsl(120, 100%, 50%);
+            color: black; 
+        }
+        div.colors div.row div.green { 
+            background-color: hsl(120, 100%, 25%); 
+        }
+        div.colors div.row div.navy { 
+            background-color: hsl(240, 100%, 25%); 
+        }
+        div.colors div.row div.blue { 
+            background-color: hsl(240, 100%, 50%); 
+        }
+        div.colors div.row div.aqua { 
+            background-color: hsl(180, 100%, 50%); 
+            color: black;
+        }
+        div.colors div.row div.teal { 
+            background-color: hsl(180, 100%, 25%); 
+        }
+        div.colors div.row div.black { 
+            background-color: hsl(0, 0%, 0%); 
+        }
+        div.colors div.row div.silver { 
+            background-color: hsl(0, 0%, 75%); 
+        }
+        div.colors div.row div.gray { 
+            background-color: hsl(0, 0%, 50%); 
+        }
+        div.colors div.row div:first-child,
+        div.colors div.row div:last-child { 
+            color: white; 
+        }
+        .section{
+            background-color: #fff3;
         }
     </style>
 </head>
@@ -37,37 +92,127 @@
     <nav class="controls">
         <a href="index.html">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-
         </a>
     </nav>
     <main>
         <header>
-            <h1>11- colors</h1>
-            <h2>son especificados usando un nombre predefinido RGB, HEX, o HLS</h2>
+            <h1>Colors</h1>
+            <h2>Are specified using predefined color names, or RGB, HEX, HSL.</h2>
         </header>
         <section class="section">
-            <H3>color names:</H3>
-            <div class="colors">
-                <div class="row1">
+           <h3>Color Names:</h3>
+           <div class="colors">
+                <div class="row row1">
                     <div class="maroon">maroon</div>
                     <div class="red">red</div>
                     <div class="orange">orange</div>
                     <div class="yellow">yellow</div>
                     <div class="olive">olive</div>
                 </div>
-                <div class="row2">
+                <div class="row row2">
                     <div class="purple">purple</div>
-                    <div class="fuchisia">fuchisia</div>
+                    <div class="fuchsia">fuchsia</div>
                     <div class="white">white</div>
                     <div class="lime">lime</div>
                     <div class="green">green</div>
                 </div>
-                <div class="row3">
+                <div class="row row3">
                     <div class="navy">navy</div>
                     <div class="blue">blue</div>
                     <div class="aqua">aqua</div>
                     <div class="teal">teal</div>
                 </div>
+                <div class="row row4">
+                    <div class="black">black</div>
+                    <div class="silver">silver</div>
+                    <div class="gray">gray</div>
+                </div>
+           </div>
+           <h3>RGB Decimal:</h3>
+           <div class="colors">
+                <div class="row row1">
+                    <div class="maroon">(128,0,0)</div>
+                    <div class="red">(255,0,0)</div>
+                    <div class="orange">(255,165,0)</div>
+                    <div class="yellow">(255,255,0)</div>
+                    <div class="olive">(128,128,0)</div>
+                </div>
+                <div class="row row2">
+                    <div class="purple">(128,0,128)</div>
+                    <div class="fuchsia">(255,0,255)</div>
+                    <div class="white">(255,255,255)</div>
+                    <div class="lime">(0,255,0)</div>
+                    <div class="green">(0,128,0)</div>
+                </div>
+                <div class="row row3">
+                    <div class="navy">(0,0,128)</div>
+                    <div class="blue">(0,0,255)</div>
+                    <div class="aqua">(0,255,255)</div>
+                    <div class="teal">(0,128,128)</div>
+                </div>
+                <div class="row row4">
+                    <div class="black">(0,0,0)</div>
+                    <div class="silver">(192,192,192)</div>
+                    <div class="gray">(128,128,128)</div>
+                </div>
+           </div>
+           <h3>RGB Hexadecimal:</h3>
+           <div class="colors">
+                <div class="row row1">
+                    <div class="maroon">(800000)</div>
+                    <div class="red">(ff0000)</div>
+                    <div class="orange">(ffa500)</div>
+                    <div class="yellow">(ffff00)</div>
+                    <div class="olive">(808000)</div>
+                </div>
+                <div class="row row2">
+                    <div class="purple">(800080)</div>
+                    <div class="fuchsia">(ff00ff)</div>
+                    <div class="white">(ffffff)</div>
+                    <div class="lime">(00ff00)</div>
+                    <div class="green">(008000)</div>
+                </div>
+                <div class="row row3">
+                    <div class="navy">(000080)</div>
+                    <div class="blue">(0000ff)</div>
+                    <div class="aqua">(00ffff)</div>
+                    <div class="teal">(008080)</div>
+                </div>
+                <div class="row row4">
+                    <div class="black">(000000)</div>
+                    <div class="silver">(c0c0c0)</div>
+                    <div class="gray">(808080)</div>
+                </div>
+           </div>
+           <h3>HSL:</h3>
+           <div class="colors">
+                <div class="row row1">
+                    <div class="maroon">(0, 100%, 25%)</div>
+                    <div class="red">(0, 100%, 50%)</div>
+                    <div class="orange">(39, 100%, 50%)</div>
+                    <div class="yellow">(60, 100%, 50%)</div>
+                    <div class="olive">(60, 100%, 25%)</div>
+                </div>
+                <div class="row row2">
+                    <div class="purple">(300, 100%, 25%)</div>
+                    <div class="fuchsia">(300, 100%, 50%)</div>
+                    <div class="white">(0, 0%, 100%)</div>
+                    <div class="lime">(120, 100%, 50%)</div>
+                    <div class="green">(120, 100%, 25%)</div>
+                </div>
+                <div class="row row3">
+                    <div class="navy">(240, 100%, 25%)</div>
+                    <div class="blue">(240, 100%, 50%)</div>
+                    <div class="aqua">(180, 100%, 50%)</div>
+                    <div class="teal">(180, 100%, 25%)</div>
+                </div>
+                <div class="row row4">
+                    <div class="black">(0, 0%, 0%)</div>
+                    <div class="silver">(0, 0%, 75%)</div>
+                    <div class="gray">(0, 0%, 50%)</div>
+                </div>
+           </div>
         </section>
     </main>
 </body>
+</html>
