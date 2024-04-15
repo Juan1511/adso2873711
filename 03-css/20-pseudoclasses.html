@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pseudoclases</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+        nav{
+            margin-block: 1rem;
+        }
+        nav a:is(:link, :visited){
+            background-color: #0009;
+            color: #fff9;
+            padding: 0.4rem 0.8rem;
+            text-decoration: none;
+        }
+        nav a:is(:hover){
+            background-color: #000;
+            color: #fff;
+        }
+        nav a:is(:active){
+            background-color: red;
+        }
+        nav a:first-child{
+            background-color: #009;
+        }
+        nav a:last-child{
+            background-color: #009;
+        }
+        input{
+            margin-block: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            outline: none;
+        }
+        input:is(:focus){
+            border: 2px solid red;
+        }
+        p.paragraph::first-line{
+            background-color: red;
+        }
+        p.paragraph::first-letter{
+            font-family: sacramento;
+            font-size: 2rem;
+        }
+        div.heart{
+            background-color: transparent;
+            position: relative;
+            margin-block: 1rem;
+            height: 100px;
+            width: 50px;
+        }
+        div.heart::before{
+            background-color: #c00;
+            position: absolute;
+            border-radius: 25px 25px 0 0;
+            content: "";
+            height: 80px;
+            width: 50px;
+            left: 100px;
+            top: 0px;
+            transform-origin: center;
+            transform: rotate(-45deg) translate(20px);
+        }
+        div.heart::after{
+            background-color: #c00;
+            position: absolute;
+            content: "";
+            height: 80px;
+            width: 50px;
+            left: 150px;
+            top: 0;
+            border-radius: 25px 25px 0 0;
+            transform-origin: center;
+            transform: rotate(45deg) translatex(-20px);
+        }
+
+        .section{
+            background-color: #0009;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>20 - pseudoclases</h1>
+            <h2>es usado para definir el estado especial de un elemento</h2>
+        </header>
+        <section class="section">
+            <h3> :link| :hover| :active| :visited</h3>
+            <h4>first-child | last_child</h4>
+            <nav>
+                <a href="#">option 1</a>
+                <a href="#">option 2</a>
+                <a href="#">option 3</a>
+                <a href="#">option 4</a>
+            </nav>
+            <h3>focus</h3>
+            <input type="text" placeholder="ingrese su primer nombre"> 
+            <input type="text" placeholder="ingrese su primer apellido"> 
+            <h3>first-letter | :first-line</h3>
+            <p class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, rem saepe suscipit impedit odit fugit earum itaque ullam harum eveniet, odio ipsa blanditiis eaque necessitatibus, recusandae enim eligendi reiciendis quo?</p>
+            <h3>before | :after</h3>
+            <div class="heart"></div>
+        </section>
+    </main>
+</body>
