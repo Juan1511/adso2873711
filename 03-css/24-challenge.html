@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callenge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+        body{
+            font-family: poppins;
+            background-color: #17a053;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            header{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                div.sp1{
+                    background: url(imagen/spriteweb.png);
+                    width: 180px;
+                    height: 170px;
+                    background-position: -10px -400px;
+                }
+
+            }
+            div.buttons{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+                align-items: center;
+
+                a:is(:link, :visited){
+                    text-decoration: none;
+                    color: #fff;
+                    background-color: #0009;
+                    border-bottom: 4px solid #fff;
+                    height: 50px;
+                    width: 135px;
+                    align-items: center;
+                    font-size: 1rem;
+                    display: flex;
+                    justify-content: center;
+                }
+                a:is(:hover){
+                    background-color: #000;
+                    border-color: yellow;
+                    transition: 0.3s ease-in all;
+                }
+            }
+            div.imagenes{
+                display: flex;
+                flex-direction: row;
+                gap: 1.5rem;
+                margin: 2rem;
+                justify-content: center;
+                background-color: #0009;
+                padding: 1.5rem;
+                width: calc(230px*3);
+                align-items: center;
+                .sprite{
+                    background-color: #0009;
+                    background-image: url(imagen/spriteweb.png);
+                    background-position: -530px -13px;
+                    width: 230px;
+                    height: 195px;
+                    border: 2px solid #fff;
+                    div{
+                        color: #000;
+                        background-color: #fff6;
+                        display: flex;
+                        justify-content: center;
+                        padding: 1.4rem;
+
+
+
+                    }
+                    div:is(:hover){
+                        background-color: #fff9;
+                    }
+                    }
+
+                }
+                div.parrafos{
+                    background-color: #0009;
+                    display: flex;
+                    flex-direction: column;
+                    width: 720px;
+                    padding: 0.5rem;
+                    gap: 0.5rem;
+
+                    div.contenedor{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 2rem;
+                        background-color: #fff;
+                        height: 200px;
+                        align-items: center;
+
+                        div.sp2{    
+                        display: flex;
+                        background: url(imagen/spriteweb.png);
+                        width: 100px;
+                        height: 100px;
+                        background-position: -280px -1090px;
+                    }
+                     p{
+                         width: 60%;
+                         font-size: 0.9rem;
+                         display: flex;
+                         text-align: justify;
+
+                     }
+                     div.sp3{
+                        background: url(imagen/spriteweb.png);
+                        background-position: -90px -200px;
+                        display: flex;
+                        width: 110px;
+                        height: 170px;
+                     }
+                     p:is(:hover){
+                        color: #17a053;
+                        cursor: pointer;
+                     }
+                }
+            } 
+            footer{
+                display: flex;
+                flex-direction: column;
+                background-color: #fff;
+                width: 702px;
+                height: auto;
+                margin: 2rem;
+                padding: 1rem;
+                align-items: center;
+                div.sp4{
+                    display: flex;
+                    width: 300px;
+                    height: 180px;
+                    background: url(imagen/spriteweb.png) no-repeat;
+                    background-position: -500px -430px;
+                }
+                div.botones-finales{
+                    display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0.5rem;
+                align-items: center;
+
+                a:is(:link, :visited){
+                    text-decoration: none;
+                    color: #000;
+                    background-color: #fff;
+                    border-bottom: 4px solid #fff;
+                    height: 50px;
+                    width: 135px;
+                    align-items: center;
+                    font-size: 1rem;
+                    display: flex;
+                    justify-content: center;
+                }
+                a:is(:hover){
+                    border-color: #17a053;
+                    transition: 0.3s ease-in all;
+                }
+                }
+            }   
+        }
+            
+    </style>
+</head>
+<body>
+    <header>
+        <div class="sp1"></div>
+    </header>
+    <div class="buttons">
+        <a href="boton">INICIO</a>
+        <a href="boton">NOSOTROS</a>
+        <a href="boton">PORTAFOLIO</a>
+        <a href="boton">SERVICIOS</a>
+        <a href="boton">CONTACTO</a>
+    </div>
+    <div class="imagenes">
+        <div class="sprite"><div>sprite 01</div></div>
+        <div class="sprite"><div>sprite 02</div></div>
+        <div class="sprite"><div>sprite 03</div></div>
+    </div>
+    <div class="parrafos">
+        <div class="contenedor">
+            <div class="sp2"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex explicabo nam hic sequi voluptas perspiciatis consectetur architecto vel sed laudantium error totam, quae nemo ipsum fugiat at praesentium dolorem esse quibusdam! Id in repellendus molestiae quaerat iure doloribus neque consequatur voluptatibus et, velit voluptatem perferendis rerum aliquam corporis, eum quisquam.</p>
+            <div class="sp3"></div>
+        </div>
+        <div class="contenedor">
+            <div class="sp2"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex explicabo nam hic sequi voluptas perspiciatis consectetur architecto vel sed laudantium error totam, quae nemo ipsum fugiat at praesentium dolorem esse quibusdam! Id in repellendus molestiae quaerat iure doloribus neque consequatur voluptatibus et, velit voluptatem perferendis rerum aliquam corporis, eum quisquam.</p>
+            <div class="sp3"></div>
+        </div>
+        <div class="contenedor">
+            <div class="sp2"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex explicabo nam hic sequi voluptas perspiciatis consectetur architecto vel sed laudantium error totam, quae nemo ipsum fugiat at praesentium dolorem esse quibusdam! Id in repellendus molestiae quaerat iure doloribus neque consequatur voluptatibus et, velit voluptatem perferendis rerum aliquam corporis, eum quisquam.</p>
+            <div class="sp3"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="sp4"></div>
+        <div class="botones-finales">
+            <a href="">INICIO</a>
+            <a href="">NOSOTROS</a>
+            <a href="">PORTAFOLIO</a>
+            <a href="">SERVIVIOS</a>
+            <a href="">CONTACTO</a>
+        </div>
+    </footer>          
+</body>

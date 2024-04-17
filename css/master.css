@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-body {
-    background-color: #000000;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23222222' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23444444' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23666666' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23888888' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaaaaa' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cccccc' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
-    background-attachment: fixed;
-    background-size: cover;
+body {background-color: #000000;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23222222' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23444444' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23666666' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23888888' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaaaaa' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cccccc' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
 background-attachment: fixed;
-background-size: cover;
-    background-size: cover;
-    font-family: poppins, serif;
-    color: white;
+background-size: cover;}
+
+
+nav.controls {
+    a:is(:link, :visited){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        background-color: #0009;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        border-radius: 50px;
+        transform: scale(0.8);
+        opacity: 0.6;
+        transition: all 0.4s ease-in;
+
+        
+       
+    }
+    a:is(:hover){
+        opacity: 1;
+        transform: scale(1);
+    }
+    svg{
+        width: 40px;
+    }
 }
 
 main{
@@ -66,7 +87,7 @@ main{
 
         }
         a:is(:hover) {
-            transform: translate(10px) skew(15deg);
+            transform: translate(10px) skew(12deg);
             background-color: #000000;
            
         }
@@ -75,4 +96,35 @@ main{
             transform: scale(1.4) rotateY(360deg);
         }
     }
+    .thechallenge{
+        width: 1000px;
+    }
+    section{
+        border-radius: 10px;
+        color: #fff;
+        padding: 10px;
+        background-color: #0008;
+        width: 400PX;
+
+        h3{
+            color: 0006;
+            font-size: 1.3rem;
+            margin: 0;
+            border-bottom: 2px dotted #ffff;
+            width: fit-content;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        xmp {
+            border-radius: 10px;
+            background-color: #0009;
+            color: #ffff;
+            padding: 0 10px 10px 10px ;
+        }
+    }
+
 }
