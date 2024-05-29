@@ -85,6 +85,7 @@ main{
             background-color: #000d;
             border-radius: 50px;
             display: flex;
+            align-items: center;
             gap: 1rem;
             color: #fff;
             padding: 1rem;

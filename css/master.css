@@ -80,6 +80,7 @@ main{
             background-color: #0009;
             border-radius: 50px;
             display: flex;
+            align-items: center;
             gap: 1rem;
             color: #fff;
             padding: 1rem;
@@ -110,6 +111,10 @@ main{
 
         a:is(:hover) i {
             transform: scale(1.4) rotateY(360deg);
+        }
+        a.disabled{
+            opacity: 0.4;
+            cursor: not-allowed;
         }
     }
     .thechallenge{
