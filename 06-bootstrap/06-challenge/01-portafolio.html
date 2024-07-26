@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+    .user-icon{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+.Texto1{
+    color: #51C9B3 !important;
+}
+
+.btn-poli{
+    background-color: #51C9B3;
+    border-radius: 5px;
+    border: none; 
+}
+
+.progress-bar{
+    background-color: #51C9B3;
+}
+
+img{
+    height: 40px;
+}
+.hero-section {
+    background: linear-gradient(65deg, #f8f9fa 50%, #51C9B3 50%);
+}
+.avatar {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.service-card {
+    max-height: 220px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+.project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.text-hulk{
+    text-align: start;
+    color: #000000;
+}
+
+.email{
+    font-size: larger;
+    font-weight: 700;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="../imagenes/account_avatar_face_man_people_profile_user_icon_123197.svg" alt="">
+            <a class="navbar-brand" href="#">Juan Manuel Zuluaga</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#About">Acerca De</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Servicies">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Portafolio">Portafolio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="Home" class="hero-section py-6">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h4 class="text-primary Texto1">Hola Yo Soy</h4>
+                    <h1 class="display-4 fw-bold">Juan Manuel Zuluaga</h1>
+                    <p class="lead">Diseñador Web Profesional Independiente</p>
+                    <p>Poseo una sólida comprensión de los principios de diseño web y me especializo en crear sitios web que sean visualmente atractivos, fáciles de usar y que cumplan con los objetivos comerciales de mis clientes.</p>
+                    <button class="btn-poli">Contratame</button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="../imagenes/Captura_de_pantalla_2024-07-26_131656-removebg-preview.png" alt="Avatar" class="avatar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="About" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="../imagenes/Captura_de_pantalla_2024-07-26_131915-removebg-preview.png" class="avatar">
+                </div>
+                <div class="col-md-6 text-center">
+            <h2>¿Porque me contratas?</h2>
+            <p>Soy un desarrollador de software con [x] años de experiencia en el diseño, desarrollo y mantenimiento de aplicaciones de software. Poseo sólidas habilidades en [mencionar lenguajes de programación, herramientas y tecnologías relevantes] y tengo un historial comprobado de éxito en la entrega de proyectos a tiempo y dentro del presupuesto.</p>
+            <p class="text-hulk"><b>Diseño UI/UX</p></b>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+            <p class="text-hulk"><b>Diseño</p></b>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+            <p class="text-hulk"><b>HTML / CSS</p></b>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+            </div>
+            <p class="text-hulk"><b>Sketch</p></b>
+            <div class="progress mb-3">
+                <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100">99%</div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="Servicies" class="services-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Servicios | proporcionar</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133311-removebg-preview.png" class="icons-cards">
+                        <br></br>
+                        <h3>Diseño Grafico</h3>
+                        <p>profesional de la comunicación visual y su labor es idear y plasmar en imágenes el mensaje que se pretende transmitir a un público determinado.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133142-removebg-preview.png" class="icons-cards">
+                        <br></br>
+                        <h3>Diseño Web</h3>
+                        <p>es el responsable de crear y diseñar todo tipo de sitios web de forma que resulten atractivos y que cumplan con las necesidades de su cliente</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133418-removebg-preview.png" class="icons-cards">
+                        <h3>Diseño UX/UI</h3>
+                        <p>el UI se encarga de decidir el recorrido del usuario mientras que el UX se centra en los procesos</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133713-removebg-preview.png" class="icons-cards">
+                        <h3>Desarrollo front-end</h3>
+                        <p>encargada de programar el navegador de una web, es decir, es el encargado de traducir las definiciones de diseño y estilo visual realizadas en un codigo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133812-removebg-preview.png" class="icons-cards">
+                        <h3>Analisis De Negocios</h3>
+                        <p>optimizar procesos, alinear estrategias y proponer soluciones eficaces, asegurando el éxito y la eficiencia de proyectos empresariales</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <img src="../imagenes/Captura_de_pantalla_2024-07-26_133521-removebg-preview.png" class="icons-cards">
+                        <h3>Marketing Digital</h3>
+                        <p>administrar las distintas plataformas sociales, creando contenido relevante, interactuando con la comunidad y gestionando la reputación de una marca.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="Portafolio" class="portfolio-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Ultimos Proyectos</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <img src="../imagenes/Captura de pantalla 2024-07-26 132201.png" alt="Project 1">
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <img src="../imagenes/Captura de pantalla 2024-07-26 132344.png" alt="Project 2">
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="project-card">
+                        <img src="../imagenes/Captura de pantalla 2024-07-26 132453.png" alt="Project 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4">
+        <div class="container text-center">
+            <p>© Juan Manuel Zuluaga</p>
+            
+            <div class="social-icons">
+                <img src="../imagenes/Captura_de_pantalla_2024-07-26_134019-removebg-preview.png" class="facebook">
+                <img src="../imagenes/Captura_de_pantalla_2024-07-26_134116-removebg-preview.png" class="twitter">
+                <img src="../imagenes/Captura_de_pantalla_2024-07-26_134200-removebg-preview.png" class="instagram">
+                <img src="../imagenes/Captura_de_pantalla_2024-07-26_134251-removebg-preview.png" class="LinkedIn">
+                <br></br>
+            </div>
+            <p class="email">J15020611zulu@gmail.com</p>
+            
+            <nav>
+                <a href="#" class="me-3">Home</a>
+                <a href="#" class="me-3">Acerca de</a>
+                <a href="#" class="me-3">Servicios</a>
+                <a href="#" class="me-3">Portafolio</a>
+                
+            </nav>
+            <br></br>
+            <p>© All Rights Reserved 2024</p>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
