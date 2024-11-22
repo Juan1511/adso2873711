@@ -108,6 +108,18 @@ nav.controles svg {
     transform: rotate(180deg);
 }
 
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .info-clima {
     background: linear-gradient(135deg, #00B4DB, #0083B0);
     color: white;
@@ -118,7 +130,15 @@ nav.controles svg {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    animation: aparecer 0.8s ease-out forwards;
+    opacity: 0;
 }
+
+.info-clima:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
 
 .info-clima.tema-oscuro {
     background: linear-gradient(135deg, #1e293b, #334155);
