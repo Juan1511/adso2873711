@@ -1,5 +1,5 @@
 const temperatura = document.querySelector('.temperatura');
-const apiKey = '9711613e634d413785c161102241511';
+const apiKey = 'be8815c39feb426fa51145548242211';
 const defaultCity = 'Manizales';
 const icono = document.querySelector(".icono");
 const pais = document.querySelector(".pais");
@@ -8,25 +8,19 @@ const condicion = document.querySelector(".condicion");
 const humedad = document.querySelector(".humedad");
 const nubosidad = document.querySelector(".nubosidad");
 const contenedor = document.querySelector(".info-clima");
-const botonTema = document.querySelector(".cambiar-tema");
 const inputBuscar = document.querySelector("#buscarCiudad");
 
+const cambiarTemaDinamicamente = (horaActual) => {
+    if (horaActual >= 18 || horaActual < 6) {
 
-const temaGuardado = localStorage.getItem('tema');
-if (temaGuardado === 'oscuro') {
-    document.body.classList.add('modo-oscuro');
-    contenedor.classList.add('tema-oscuro');
-}
+        document.body.classList.add('modo-oscuro');
+        contenedor.classList.add('tema-oscuro');
+    } else {
 
-
-botonTema.addEventListener('click', () => {
-    document.body.classList.toggle('modo-oscuro');
-    contenedor.classList.toggle('tema-oscuro');
-
-
-    const esOscuro = document.body.classList.contains('modo-oscuro');
-    localStorage.setItem('tema', esOscuro ? 'oscuro' : 'claro');
-});
+        document.body.classList.remove('modo-oscuro');
+        contenedor.classList.remove('tema-oscuro');
+    }
+};
 
 const cargarClima = async (ciudadBuscar) => {
     try {
@@ -42,6 +36,9 @@ const cargarClima = async (ciudadBuscar) => {
 
         const datos = await respuesta.json();
 
+
+        const horaLocal = new Date(datos.location.localtime).getHours();
+
         temperatura.textContent = `${Math.round(datos.current.temp_c)}°C`;
         icono.setAttribute('src', datos.current.condition.icon);
         pais.textContent = datos.location.country;
@@ -49,6 +46,9 @@ const cargarClima = async (ciudadBuscar) => {
         condicion.textContent = datos.current.condition.text;
         humedad.textContent = `💧 ${datos.current.humidity}%`;
         nubosidad.textContent = `☁️ ${datos.current.cloud}%`;
+
+
+        cambiarTemaDinamicamente(horaLocal);
 
     } catch (error) {
         console.error('Error al cargar datos del clima:', error);
@@ -59,7 +59,6 @@ const cargarClima = async (ciudadBuscar) => {
         }
     }
 };
-
 
 inputBuscar.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
