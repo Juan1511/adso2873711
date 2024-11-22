@@ -1,0 +1,288 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e8f0;
+    transition: background-color 0.3s ease;
+}
+
+body.modo-oscuro {
+    background-color: #0f172a;
+}
+
+nav.controles {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}
+
+nav.controles a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: black;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+nav.controles a:hover {
+    background-color: black;
+}
+
+nav.controles svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+}
+
+.controles-superiores {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.buscador {
+    flex: 1;
+    margin: 1;
+}
+
+.buscador input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.buscador input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tema-oscuro .buscador input {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.buscador input:focus {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.cambiar-tema {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cambiar-tema:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.cambiar-tema svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    transition: transform 0.5s ease;
+}
+
+.cambiar-tema:hover svg {
+    transform: rotate(180deg);
+}
+
+.info-clima {
+    background: linear-gradient(135deg, #00B4DB, #0083B0);
+    color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 300px;
+    box-shadow: 0 10px 20px black;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.info-clima.tema-oscuro {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    box-shadow: 0 10px 30px black;
+}
+
+.info-clima::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.2) 100%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.info-clima.tema-oscuro::before {
+    opacity: 0.05;
+}
+
+.info-clima>* {
+    position: relative;
+    z-index: 2;
+}
+
+.info-principal {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.pais {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0 0 0.5rem 0;
+}
+
+.ciudad {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.contenedor-temperatura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.temperatura {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.icono {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.tema-oscuro .icono {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.condicion {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin: 0;
+}
+
+.tema-oscuro .condicion {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.detalles {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.humedad,
+.nubosidad {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    margin: 0;
+}
+
+.tema-oscuro .humedad,
+.tema-oscuro .nubosidad {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contenedor-ciudad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+}
+
+.icono-ubicacion {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    opacity: 0.9;
+}
+
+@media (max-width: 350px) {
+    .info-clima {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .controles-superiores {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .cambiar-tema {
+        width: 35px;
+        height: 35px;
+    }
+
+    .temperatura {
+        font-size: 2.5rem;
+    }
+
+    .ciudad {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav.controles {
+        top: 10px;
+        left: 10px;
+    }
+
+    nav.controles a {
+        width: 28px;
+        height: 28px;
+    }
+
+    nav.controles svg {
+        width: 14px;
+        height: 14px;
+    }
+}
