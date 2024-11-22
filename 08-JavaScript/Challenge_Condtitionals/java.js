@@ -33,7 +33,7 @@ const cargarClima = async (ciudadBuscar) => {
         const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${ciudadBuscar}`;
         const respuesta = await fetch(url);
         contenedor.style.animation = 'none';
-        contenedor.offsetHeight; // Forzar un reflow
+        contenedor.offsetHeight;
         contenedor.style.animation = 'aparecer 0.8s ease-out forwards';
 
         if (!respuesta.ok) {
