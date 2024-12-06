@@ -61,7 +61,7 @@ body {
     position: sticky;
     top: 20px;
     height: 90vh;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .pokemon-grid {
@@ -101,7 +101,9 @@ body {
 }
 
 #pokemonImage {
-    max-width: 300px;
+    max-width: 100%;
+    width: 110px;
+    height: auto;
     filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.4));
     margin-bottom: 20px;
 }
@@ -289,4 +291,29 @@ body {
 
 .type-fairy {
     background-color: #EE99AC;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 34, 53, 0.7);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(145deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 10px;
+    border: 2px solid rgba(30, 34, 53, 0.7);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(145deg, var(--accent-secondary), var(--accent-primary));
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) rgba(30, 34, 53, 0.7);
 }
