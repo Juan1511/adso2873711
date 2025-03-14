@@ -136,7 +136,7 @@
 
       const numeros = new Set();
       while (numeros.size < 5) {
-        numeros.add(Math.floor(Math.random() * 100) + 1);
+        numeros.add(Math.floor(Math.random() * 43) + 1);
       }
 
       Array.from(numeros).sort((a, b) => a - b).forEach((num, i) => {
@@ -151,7 +151,7 @@
 
       setTimeout(() => {
         const span = document.createElement("span");
-        span.textContent = Math.floor(Math.random() * 9) + 1;
+        span.textContent = Math.floor(Math.random() * 6) + 1;
         span.classList.add("superbalota");
         superBalota.appendChild(span);
         span.style.opacity = "1";
