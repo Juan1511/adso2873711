@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        section{
+            display: flex;
+            flex-direction: column;
+            div.header{
+                background-color: #919BF5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+                gap: 6px;
+                h2{
+                    font-size: 42px;
+                    font-weight: 400;
+                    color: black;
+                    &:first-child{
+                        color: #004BA3;
+                    }
+                }
+                button{
+                    transition: all 0.3s ease-in;
+                    width: 66px;
+                    height: 66px;
+                    padding: 0;
+                    border: none;
+                    cursor: pointer;
+                    background: url("./images/vehicle/button-moon.svg") center no-repeat;
+                    background-size: 100%;
+                }
+            }
+            div.attributes, div.methods{
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+                color: black;
+                margin: 0;
+                padding-bottom: 15px;
+                h2{
+                    font-weight: 400;
+                    font-size: 36px;
+                    align-self: center;
+                    margin: 1rem;
+                }
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
+                    div{
+                        margin-left: 2rem;
+                        align-self: flex-start;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 10px;
+                        div{
+                            margin: 0;
+                        }
+                        h2{
+                            margin: 0;
+                            font-size: 24px;
+                            color: #004BA3;  
+                        }
+                        p{
+                            margin: 0;
+                            color: black;
+                        }
+                        span{
+                            font-size: 24px;
+                        }
+                        button{
+                            width: 26px;
+                            height: 26px;
+                            border: none;
+                            cursor: pointer;
+                        }
+                        button.btn-on{
+                            background: url("images/vehicle/turn_on.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-fwd{
+                            background: url("images/vehicle/run.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-pause{
+                            background: url("images/vehicle/stop.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-bwd{
+                            background: url("images/vehicle/back.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-off{
+                            background: url("images/vehicle/turn_off.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                } 
+            }
+        }
+        section img.image {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -200px;
+            z-index: 4;
+        }
+        /* Methods */
+        .start {
+            animation: animStart 0.1s ease-in infinite;
+        }
+        @keyframes animStart {
+            100% {
+                bottom: -202px;
+            }
+        }
+        section div.visibility {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            height: 262px;
+            margin: 0 auto;
+            width: 400px;
+        }
+        section div.visibility div {
+            position: absolute;
+            height: 262px;
+            width: calc(760px * 2);
+        }
+        section div.visibility div.bg-sky {
+            background: url("./images/vehicle/bg1.svg") repeat-x 0 bottom;
+            animation: animParallax 40s linear infinite;
+            animation-play-state: paused;
+            z-index: 1;
+        }
+        section div.visibility div.bg-mountains {
+            background: url("./images/vehicle/bg2.svg") repeat-x 0 81px;
+            animation: animParallax 30s linear infinite;
+            animation-play-state: paused;
+            z-index: 2;
+        }
+        section div.visibility div.bg-route {
+            background: url("./images/vehicle/bg3.svg") repeat-x 0 bottom;
+            animation: animParallax 5s linear infinite;
+            animation-play-state: paused;
+            z-index: 3;
+        }
+        @keyframes animParallax {
+            100% {
+                background-position-x: -1520px;
+            }
+        }
+        /* Fordward */
+        section div.visibility.fordward div.bg-sky {
+            animation-play-state:running;
+        }
+        section div.visibility.fordward div.bg-mountains {
+            animation-play-state:running;
+        }
+        section div.visibility.fordward div.bg-route {
+            animation-play-state:running;
+        }
+        /* Stop */
+        section div.visibility.stop div.bg-sky {
+            animation-play-state: paused;
+        }
+        section div.visibility.stop div.bg-mountains {
+            animation-play-state: paused;
+        }
+        section div.visibility.stop div.bg-route {
+            animation-play-state: paused;
+        }
+        /* Backward */
+        section div.visibility.backward div.bg-sky {
+            animation-direction: reverse;
+        }
+        section div.visibility.backward div.bg-mountains {
+            animation-direction: reverse;
+        }
+        section div.visibility.backward div.bg-route {
+            animation-direction: reverse;
+        }
+
+
+        section div.visibility button{
+            border: none;
+            cursor: pointer;
+            height: 80px;
+            width: 40px;
+            z-index: 5;
+        }
+        
+        button.btn-next{
+            background: url(./images/vehicle/next-light.svg);
+        }
+        button.btn-prev{
+            background: url(./images/vehicle/prev-ligth.svg);
+        }
+        
+        /* Dark mode*/
+        section.dark{
+            div.header{
+                background-color: #293DED;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem;
+                gap: 6px;
+                h2{
+                    font-size: 42px;
+                    font-weight: 400;
+                    color: white;
+                    &:first-child{
+                        color: #61A7F9;
+                    }
+                }
+                button{
+                    border: none;
+                    cursor: pointer;
+                    background: url("./images/vehicle/button-dark.svg") center no-repeat;
+                    background-size: 100%;
+                }
+            }
+            div.attributes{
+                margin-bottom: 15px;
+            }
+            div.attributes, div.methods{
+                display: flex;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                margin: 0;
+                h2{
+                    font-weight: 400;
+                    font-size: 36px;
+                    align-self: center;
+                    margin: 1rem;
+                    color: white;
+                }
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
+                    div{
+                        margin-left: 2rem;
+                        align-self: flex-start;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 10px;
+                        div{
+                            margin: 0;
+                        }
+                        h2{
+                            margin: 0;
+                            font-size: 24px;
+                            color: #61A7F9; 
+                        }
+                        p{
+                            margin: 0;
+                            color: white;
+                        }
+                        span{
+                            font-size: 24px;
+                            color: white;
+                        }
+                        button{
+                            width: 26px;
+                            height: 26px;
+                            border: none;
+                            cursor: pointer;
+                        }
+                        button.btn-on{
+                            background: url("images/vehicle/turn_on-dark.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-fwd{
+                            background: url("images/vehicle/run-dark.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-pause{
+                            background: url("images/vehicle/stop-dark.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-bwd{
+                            background: url("images/vehicle/back-dark.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                        button.btn-off{
+                            background: url("images/vehicle/turn_off-dark.svg") no-repeat;
+                            background-size: 100%;
+                        }
+                    }
+                } 
+            }
+            button.btn-next{
+                background: url(./images/vehicle/next-dark.svg);
+            }
+            button.btn-prev{
+                background: url(./images/vehicle/prev-dark.svg);
+            }
+            div.visibility div.bg-sky {
+                background: url("./images/vehicle/bg1-dark.svg") repeat-x 0 bottom;
+            }
+            div.visibility div.bg-mountains {
+                background: url("./images/vehicle/bg2-dark.svg") repeat-x 0 90px;
+            }
+            div.visibility div.bg-route {
+                background: url("./images/vehicle/bg3-dark.svg") repeat-x 0 bottom;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>Object</h1>
+            <h2>Vehicle.</h2>
+        </header>
+        <section>
+            <div class="header">
+                <h2 class="class">Class</h2>
+                <h2>Vehicle</h2>
+                <button class="btn-mode bg-[none]"></button>
+            </div>
+            <div class="attributes">
+                <h2>Attributes</h2>
+                <div>
+                    <div>
+                        <p>+</p>
+                        <h2>Vehicle:</h2>
+                        <span class="vehicle"></span>
+                    </div>
+                    <div>
+                        <p>+</p>
+                        <h2>Brand:</h2>
+                        <span class="brand"></span>
+                    </div>
+                    <div>
+                        <p>+</p>
+                        <h2>Model:</h2>
+                        <span class="model"></span>
+                    </div>
+                    <div>
+                        <p>+</p>
+                        <h2>Color:</h2>
+                        <span class="color"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="methods">
+                <img src="./images/vehicle/line.svg" alt="">
+                <h2>Methods</h2>
+                <div>
+                    <div>
+                        <div>
+                            <p>+</p>
+                            <h2>turn_on():</h2>
+                            <span>bool</span>
+                        </div>
+                        <button class="btn-on"></button>
+                    </div>
+                    <div>
+                        <div>
+                            <p>+</p>
+                            <h2>run():</h2>
+                            <span class="brand">function</span>
+                        </div>
+                        <button class="btn-fwd"></button>
+                    </div>
+                    <div>
+                        <div>
+                            <p>+</p>
+                            <h2>stop():</h2>
+                            <span class="model">function</span>
+                        </div>
+                        <button class="btn-pause"></button>
+                    </div>
+                    <div>
+                        <div>
+                            <p>+</p>
+                            <h2>back():</h2>
+                            <span class="color">function</span>
+                        </div>
+                        <button class="btn-bwd"></button>
+                    </div>
+                    <div>
+                        <div>
+                            <p>+</p>
+                            <h2>turn_off():</h2>
+                            <span class="color">bool</span>
+                        </div>
+                        <button class="btn-off"></button>
+                    </div>
+                </div>
+            </div>
+            <img src="" class="image">
+            <div class="visibility">
+                <div class="bg-sky"></div>
+                <div class="bg-mountains"></div>
+                <div class="bg-route"></div>
+                <button class="btn-prev"></button>
+                <button class="btn-next"></button>
+            </div>
+        </section>
+    </main>
+    <script>
+        //Const
+        var i = 0
+        var   engine = false
+        var   move   = false
+        // DarkMode
+        const darkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        //Elements
+        const btnMode = document.querySelector(".btn-mode")
+        const section = document.querySelector("section")
+        const btnPrev = document.querySelector(".btn-prev")
+        const btnNext = document.querySelector(".btn-next")
+        const btnOn = document.querySelector(".btn-on")
+        const btnOff = document.querySelector(".btn-off")
+        const btnFwd = document.querySelector(".btn-fwd")
+        const btnStop = document.querySelector(".btn-pause")
+        const btnBwd = document.querySelector(".btn-bwd")
+        const landscape = document.querySelector('.visibility')
+        //Attributes
+        const vehicleName = document.querySelector(".vehicle")
+        const brand = document.querySelector(".brand")
+        const model = document.querySelector(".model")
+        const color = document.querySelector(".color")
+        const image = document.querySelector(".image")
+        //btns: Events
+        btnMode.addEventListener("click", function () {
+            vehicle.mode()
+        })
+        btnOn.addEventListener('click', function() {
+            vehicle.start()
+        })
+        btnOff.addEventListener('click', function() {
+            vehicle.off()
+        })
+        btnFwd.addEventListener('click', function() {
+            vehicle.fordward()
+        })
+        btnStop.addEventListener('click', function() {
+            vehicle.stop()
+        })
+        btnBwd.addEventListener('click', function() {
+            vehicle.reverse()
+        })
+        btnNext.addEventListener("click", function () {
+            if (i < vehicle.attributes.length - 1) {
+                vehicle.showAttributes(++i)
+            }else{
+                vehicle.showAttributes(0)
+                i = 0
+            }
+        })
+        btnPrev.addEventListener("click", function () {
+            if (i > 0) {
+                vehicle.showAttributes(--i)
+            }else{
+                vehicle.showAttributes(vehicle.attributes.length - 1)
+                i = vehicle.attributes.length - 1
+            }
+        })
+        
+        const vehicle = {
+            attributes: [
+                { vehicle: 'Car', brand: 'Toyota', model: 'Corolla 2018', color: 'red', image: 'images/vehicle/car13.png' },
+                { vehicle: 'SUV', brand: 'Honda', model: 'CR-V 2017', color: 'Yellow', image: 'images/vehicle/car14.png' },
+                { vehicle: 'Crossover', brand: 'Ford', model: 'Edge 2019', color: 'Blue', image: 'images/vehicle/car15.png' },
+                { vehicle: 'SUV', brand: 'Nissan', model: 'X-Trail 2020', color: 'Yellow', image: 'images/vehicle/car16.png' },
+                { vehicle: 'Sedan', brand: 'Hyundai', model: 'Elantra 2016', color: 'Beige', image: 'images/vehicle/car5.png' },
+                { vehicle: 'SUV', brand: 'Jeep', model: 'Wrangler 2021', color: 'Olive', image: 'images/vehicle/car6.png' },
+                { vehicle: 'Hatchback', brand: 'Chevrolet', model: 'Spark 2015', color: 'red', image: 'images/vehicle/car7.png' },
+                { vehicle: 'Sedan', brand: 'Chevrolet', model: 'Malibu 2018', color: 'Dark Green', image: 'images/vehicle/car8.png' },
+                { vehicle: 'Hatchback', brand: 'Kia', model: 'Rio 2019', color: 'Blue', image: 'images/vehicle/car9.png' },
+                { vehicle: 'Pickup', brand: 'Ford', model: 'Ranger 2022', color: 'Yellow', image: 'images/vehicle/car10.png' },
+                { vehicle: 'Compact', brand: 'Fiat', model: '500 2017', color: 'Orange', image: 'images/vehicle/car11.png' },
+                { vehicle: 'Hatchback', brand: 'Toyota', model: 'Yaris 2020', color: 'Beige', image: 'images/vehicle/car12.png' },
+                { vehicle: 'Compact', brand: 'Volkswagen', model: 'Beetle 2016', color: 'Red', image: 'images/vehicle/car1.png' },
+                { vehicle: 'Compact', brand: 'Smart', model: 'Fortwo 2021', color: 'Orange', image: 'images/vehicle/car2.png' },
+                { vehicle: 'Compact', brand: 'Suzuki', model: 'Alto 2015', color: 'Pink', image: 'images/vehicle/car3.png' },
+                { vehicle: 'Compact', brand: 'Daihatsu', model: 'Mira 2018', color: 'Green', image: 'images/vehicle/car4.png' }
+            ],
+
+            mode: function () {
+                section.classList.toggle("dark")
+            },
+            
+            showAttributes: function (i) {
+                vehicleName.textContent = this.attributes[i].vehicle
+                brand.textContent = this.attributes[i].brand
+                model.textContent = this.attributes[i].model
+                color.textContent = this.attributes[i].color
+                image.setAttribute("src", this.attributes[i].image)
+            },
+            start: function() {
+                if(!engine) {
+                    image.classList.add('start')
+                    engine = true
+                }
+            },
+            off: function() {
+                if(engine && !move) {
+                    image.classList.remove('start')
+                    engine = false
+                }
+            },
+            fordward: function() {
+                if(engine && !move) {
+                    landscape.classList.add('fordward')
+                    landscape.classList.remove('stop')
+                    landscape.classList.remove('backward')
+                    move = true
+                }
+            },
+            stop: function() {
+                if(engine && move) {
+                    landscape.classList.add('stop')
+                    move = false
+                }
+            },
+            reverse: function() {
+                if(engine && !move) {
+                    landscape.classList.add('backward')
+                    landscape.classList.remove('stop')
+                    move = true
+                }
+            }
+        }
+
+        function darkModeChange(dmq) {
+            if(dmq.matches) {
+                section.classList.add('dark')
+            } else {
+                section.classList.remove('dark')
+            }
+        }
+       
+        vehicle.showAttributes(i)
+        darkModeChange(darkMode)
+        darkMode.addListener(darkModeChange)
+   
+        function darkModeChange(dmq) {
+            if(dmq.matches) {
+                section.classList.add('dark')
+            } else {
+                section.classList.remove('dark')
+            }
+        }
+        darkMode.addListener(darkModeChange)
+
+    </script>
+</body>
+</html>

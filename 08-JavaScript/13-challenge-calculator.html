@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13- Challenge</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        div.calculator{
+            width: 280px;
+            height: 475px;
+            background-color: #EEEEEE;
+            margin: 1rem auto;
+            border-radius: 23px;
+
+            header.display{
+                position: relative;
+                height: 135px;
+                div.mode{
+                    width: 80px;
+                    position: absolute;
+                    top: 8px;
+                    height: 30px;
+                    transition: transform 0.4s ease-in;
+                    background: url("./images/calculator/mode.svg") no-repeat center;
+                    &:hover{
+                        cursor: pointer;
+                        transform: scale(1.1);
+                    }
+                }
+                input.operation{
+                    position: absolute;
+                    right: 0;
+                    top: 72px;
+                    right: 14px;
+                    text-align: right;
+                    background-color: transparent;
+                    border: none;
+                    font-size: 15px;
+                    font-weight: 400;
+                    font-family: Poppins, sans-serif;
+                    width: 260px;
+                    outline: none;
+                }
+                h4.result{
+                    position: absolute;
+                    right: 0;
+                    top: 95px;
+                    right: 14px;
+                    text-align: right;
+                    font-size: 30px;
+                    font-weight: 600;
+                    font-family: Poppins, sans-serif;
+                    color: #000;
+                    margin: 0;
+                    width: 260px;
+                    overflow-x: hidden;
+                }
+            }
+            footer.buttons{
+                background-color: #C1C1C1;
+                border-radius: 23px;
+                padding: 10px;
+                gap: 0;
+                grid-template-columns: repeat(4, 64px);
+                justify-content: center;
+                display: grid;
+                margin-top: 20px;
+                button{
+                    width: 64px;
+                    height: 64px;
+                    margin: 0;
+                    cursor: pointer;
+                    background: transparent;
+                    border-right: 2px #898989 solid;
+                    border-bottom: 2px #898989 solid;
+                    border-top: none;
+                    border-left: none;
+                    font-size: 30px;
+                    font-family: Poppins, sans-serif;
+                }
+                button.btn-mod, button.btn-prod, button.btn-subs, button.btn-add, button.btn-equal{
+                    border-right: none;
+                }
+                button.btn-div, button.btn-0, button.btn-dot, button.btn-equal{
+                    border-bottom: none;
+                }
+                button.btn-clear, .btn-back, .btn-pow, .btn-mod, .btn-prod, .btn-subs, .btn-add, .btn-dot, .btn-div{
+                    color: #EEEEEE;
+                }
+                button.btn-dot{
+                    font-size: 40px;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                    border-right: 2px #898989 solid;
+                    border-bottom: 2px #898989 solid;
+                    border-top: 2px #898989 solid;
+                    border-left: 2px #898989 solid;
+                }
+            }
+
+        }
+
+        div.calculator.dark{
+            background-color: #626262;
+            header.display{
+                div.mode{
+                    background: url("./images/calculator/mode-dark.svg") no-repeat center;
+                }
+                input.operation{
+                    color: #fff;
+                }
+                h4.result{
+                    color: #fff;
+                }
+            }
+            footer.buttons{
+                background-color: #2B2B2B;
+                button{
+                    border-right: 2px #fff solid;
+                    border-bottom: 2px #fff solid;
+                    color: #fff;
+                }
+                button.btn-clear, .btn-back, .btn-pow, .btn-mod, .btn-prod, .btn-subs, .btn-add, .btn-dot, .btn-div{
+                    color: #EEEEEE;
+                }
+                button.btn-mod, button.btn-prod, button.btn-subs, button.btn-add, button.btn-equal{
+                    border-right: none;
+                }
+                button.btn-div, button.btn-0, button.btn-dot, button.btn-equal{
+                    border-bottom: none;
+                }
+                button:hover{
+                    border-right: 2px #fff solid;
+                    border-bottom: 2px #fff solid;
+                    border-top: 2px #fff solid;
+                    border-left: 2px #fff solid;
+                }
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>13- Challenge</h1>
+            <h2>Calculator</h2>
+        </header>
+        <section>
+            <div class="calculator">
+                <header class="display">
+                    <div class="mode"></div>
+                    <input type="text" class="operation" readonly>
+                    <h4 class="result"></h4>
+                </header>
+                <footer class="buttons">
+                    <!--  -->
+                    <button class="btn-clear">C</button>
+                    <button class="btn-back">&lt;</button>
+                    <button class="btn-pow" data-opt="**">^</button>
+                    <button class="btn-mod" data-opt="%">%</button>
+                    <!--  -->
+                    <button class="btn-1" data-num="1">1</button>
+                    <button class="btn-2" data-num="2">2</button>
+                    <button class="btn-3" data-num="3">3</button>
+                    <button class="btn-prod" data-opt="*">x</button>
+                    <!--  -->
+                    <button class="btn-4" data-num="4">4</button>
+                    <button class="btn-5" data-num="5">5</button>
+                    <button class="btn-6" data-num="6">6</button>
+                    <button class="btn-subs" data-opt="-">-</button>
+                    <!--  -->
+                    <button class="btn-7" data-num="7">7</button>
+                    <button class="btn-8" data-num="8">8</button>
+                    <button class="btn-9" data-num="9">9</button>
+                    <button class="btn-add" data-opt="+">+</button>
+                    <!--  -->
+                    <button class="btn-div" data-opt="/">/</button>
+                    <button class="btn-0" data-num="0">0</button>
+                    <button class="btn-dot" data-opt=".">.</button>
+                    <button class="btn-equal">=</button>
+                    <!--  -->
+                </footer>
+            </div>
+        </section>
+    </main>
+    <script>
+        // isDarkMode
+        const calculator = document.querySelector('.calculator')
+        const btnMode    = document.querySelector('.mode')
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        function detectMode() {
+            if(isDarkMode.matches) {
+                calculator.classList.add('dark')
+                //console.log('Mode: Dark')
+            } else {
+                calculator.classList.remove('dark')
+                //console.log('Mode: Light')
+            }
+        }
+        detectMode()
+        isDarkMode.addListener(detectMode)
+        btnMode.addEventListener('click', () => {
+            calculator.classList.toggle('dark')
+        })
+        // Buttons actions - - - - - - - - -
+        const btnsNumbers = document.querySelectorAll("button[data-num]")
+        const btnsOpers   = document.querySelectorAll("button[data-opt]")
+        const btnClear    = document.querySelector(".btn-clear")
+        const btnBack     = document.querySelector(".btn-back")
+        const btnEqual    = document.querySelector(".btn-equal")
+        const operation   = document.querySelector(".operation")
+        const result      = document.querySelector(".result")
+        let isOper        = false
+
+        function addToOperation(c) {
+            if (validateLength()) {
+                operation.value += c
+            }
+        }
+
+        function validateLength() {
+            if (operation.value.length <= 30) {
+                return true
+            }else{
+                return false
+            }
+        }
+
+        btnsNumbers.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                //addToOperation(btn.getAttribute("data-num"))
+                addToOperation(btn.dataset.num)
+                isOper = true
+            })
+        })
+
+        btnsOpers.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                if (isOper) {
+                    addToOperation(btn.dataset.opt)
+                    isOper = false
+                }
+            })
+        })
+
+        btnClear.addEventListener("click", function () {
+            operation.value = ""
+            result.textContent = ""
+        })
+
+        btnEqual.addEventListener("click", function() {
+            if (operation.value.length != 0) {
+                result.textContent = "="+ eval(operation.value)
+            }
+        })
+
+        btnBack.addEventListener("click", () => {
+            operation.value = operation.value.slice(0, -1)
+            if (isNaN(operation.value.slice(-1))) {
+                isOper = false
+            }else{
+                isOper = true
+            }
+        })
+        //Key Events
+        document.addEventListener("keyup", (event) => {
+            console.log(event.keyCode)
+            //0-9 => Keycode: 48,49,50,51,52,53,54,55,56,57
+            // Backspace => keycode: 8
+            // Enter => keycode: 13
+            // Delete => keycode: 46
+            // % => keycode: 16 + 53
+            // + => keycode: 187
+            // - => keycode: 189
+            // / => keycode: 16-55
+            // * => keycode: 
+
+            switch (event.keyCode) {
+                // numbers 0 to 9 - - - - -
+                case 48:
+                    isOper = true
+                    addToOperation(0)
+                    break;
+                case 49:
+                    isOper = true
+                    addToOperation(1)
+                    break;
+                case 50:
+                    isOper = true
+                    addToOperation(2)
+                    break;
+                case 51:
+                    isOper = true
+                    addToOperation(3)
+                    break;
+                case 52:
+                    isOper = true
+                    addToOperation(4)
+                    break;
+                case 53:
+                    isOper = true
+                    addToOperation(5)
+                    break;
+                case 54:
+                    if (event.shiftKey) {
+                        if (isOper) {
+                            addToOperation("%")
+                            isOper = false
+                        }
+                    }else{
+                        isOper = true
+                        addToOperation(6)
+                    }
+                    break;
+                case 55:
+                    if (event.shiftKey) {
+                        if (isOper) {
+                            ddToOperation("/")
+                            isOper = false
+                        }
+                    }else{
+                        isOper = true
+                        addToOperation(7)
+                    }
+                    break;
+                case 56:
+                    isOper = true
+                    addToOperation(8)
+                    break;
+                case 57:
+                    isOper = true
+                    addToOperation(9)
+                    break;
+                case 46:
+                    operation.value = ""
+                    result.textContent = ""
+                    break;
+                case 8:
+                    operation.value = operation.value.slice(0, -1)
+                    if (isNaN(operation.value.slice(-1))) {
+                        isOper = false
+                    }else{
+                        isOper = true
+                    }
+                    break;
+                case 13:
+                    if (operation.value.length != 0) {
+                        result.textContent = "="+ eval(operation.value)
+                    }
+                    break;
+                case 187:
+                    if (isOper) {
+                        addToOperation("+")
+                        isOper = false
+                    }
+                case 189:
+                    if (isOper) {
+                        addToOperation("-")
+                        isOper = false
+                    }
+
+                //Default - - - -
+                default:
+                    break;
+            }
+        })
+    </script>
+</body>
+</html>

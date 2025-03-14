@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mETHODS sTRINGS</title>
+    <title>Methods dates</title>
     <link rel="stylesheet" href="css/master.css">
     <style>
 
@@ -17,12 +17,31 @@
     </nav>
     <main>
         <header>
-            <h1>Layout</h1>
-            <h2>Lorem ipsum dolor sit amet.</h2>
+            <h1>Methods dates</h1>
+            <h2>😊</h2>
         </header>
         <section class="content">
-            
+            <h3>Methods set/get:</h3>
+            <ul class="methods-set"></ul>
         </section>
     </main>
+    <script>
+        //Elements
+        const methodsSet = document.querySelector(".methods-set")
+
+        //Methods Set
+        let worldCup2026 = new Date("10-30-2028 08:00:00")
+        worldCup2026.setMonth(5)
+        worldCup2026.setDate(11)
+        worldCup2026.setFullYear(2026)
+
+        //methods Get
+        methodsSet.innerHTML = `Date Next Fifa WorldCup: 
+                                ${worldCup2026.getDate()}/ 
+                                0${worldCup2026.getMonth() + 1}/
+                                ${worldCup2026.getFullYear()} 
+                                0${worldCup2026.getHours()} : 
+                                0${worldCup2026.getMinutes()}`
+    </script>
 </body>
 </html>
