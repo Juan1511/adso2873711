@@ -1,26 +1,416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/master.css">
-    <title>challenge-Arrays</title>
+    <title>Challenge Arrays</title>
+    <link rel="stylesheet" href="css/master.css">
     <style>
+        section {
+            align-items: center;
+            background-image: url('./images/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: relative;
+            padding: 20px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .titulo {
+            background-color: black;
+            border-radius: 20px;
+            height: 60px;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .titulo p {
+            font-family: 'Jersey 25', sans-serif;
+            text-align: center;
+            color: white;
+        }
+
+        .auto {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            border-radius: 5px;
+            width: 80px;
+            height: auto;
+        }
+
+        .auto:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .auto.seleccionado {
+            border-color: green;
+            box-shadow: 0 0 10px green;
+        }
+
+        .contenedor-autos {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+
+        .boton-mas {
+            background-color: black;
+            border-radius: 100px;
+            height: 60px;
+            margin-left: 10px;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .boton-mas:hover {
+            background-color: green;
+        }
+
+        .boton-menos {
+            background-color: black;
+            border-radius: 100px;
+            height: 60px;
+            margin-left: 10px;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .boton-menos:hover {
+            background-color: green;
+        }
+
+        .posicion {
+            background-color: black;
+            border-radius: 100px;
+            height: 60px;
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .posicion:hover {
+            background-color: green;
+        }
+
+        .opciones {
+            display: flex;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            background-color: black;
+            border-radius: 100px;
+            height: 60px;
+            margin-left: 10px;
+            width: 30%;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            border-radius: 60px;
+            cursor: pointer;
+            width: 70%;
+            border: none;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 40px;
+        }
+
+        .entrada-numero {
+            width: 80%;
+            text-align: center;
+            padding: 8px;
+            border-radius: 20px;
+            border: 2px solid black;
+            font-size: 16px;
+            display: none;
+        }
+
+        .entrada-numero:focus {
+            outline: none;
+            border-color: black;
+        }
+
+        .contenedor-boton-dinamico {
+            display: none;
+        }
+
+        .contenedor-resultado {
+            background-color: #fff9;
+            border-radius: 10px;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            min-height: 100px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .item-auto {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: black;
+            border-radius: 5px;
+        }
+
+        .item-auto img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .boton-mas:hover,
+        .boton-menos:hover,
+        .posicion:hover,
+        .botones:hover {
+            background-color: black;
+            border: 2px solid white;
+            box-shadow: 0 0 10px white;
+        }
     </style>
 </head>
+
 <body>
     <nav class="controls">
         <a href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="#ffffff"
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
         </a>
     </nav>
     <main>
         <header>
-            <h1>25-Challenge-Arrays</h1>
+            <h1>Challenge Arrays</h1>
+            <h2>Autos Deportivos</h2>
         </header>
         <section>
-
+            <div class="titulo">
+                <p>Selecciona tu auto</p>
+            </div>
+            <div class="contenedor-autos">
+                <img src="./imagesCars/ferrari.png" class="auto" data-nombre="Ferrari">
+                <img src="./imagesCars/porsche.png" class="auto" data-nombre="Porsche">
+                <img src="./imagesCars/lamborghini.png" class="auto" data-nombre="Lamborghini">
+                <img src="./imagesCars/ford.png" class="auto" data-nombre="Ford">
+            </div>
+            <div class="contenedor-autos">
+                <img src="./imagesCars/bugatti.png" class="auto" data-nombre="Bugatti">
+                <img src="./imagesCars/aston_martin.png" class="auto" data-nombre="Aston Martin">
+                <img src="./imagesCars/chevrolet.png" class="auto" data-nombre="Chevrolet Corvette">
+                <img src="./imagesCars/mclaren.png" class="auto" data-nombre="McLaren">
+            </div>
+            <div class="titulo">
+                <p>Opciones</p>
+            </div>
+            <div class="opciones">
+                <div id="alternarPrimero" class="boton-mas">
+                    Primero
+                </div>
+                <div id="alternarAgregarRemover" class="boton-menos">
+                    Agregar
+                </div>
+                <div id="entradaNumero" class="posicion">
+                    Posición
+                    <input type="number" min="0" class="entrada-numero" placeholder="Posición">
+                </div>
+            </div>
+            <div class="opciones">
+                <div id="botonAccion" class="botones" style="display: flex;">
+                    <button id="ejecutarAccionBtn">+</button>
+                </div>
+            </div>
+            <div class="titulo">
+                <p>Resultado</p>
+            </div>
+            <div class="contenedor-resultado" id="contenedorResultado">
+            </div>
         </section>
     </main>
+
+    <script>
+        const autosSeleccionados = [];
+
+        let autoSeleccionadoActual = null;
+        let esPrimero = true;
+        let esAgregar = true;
+        let indicePosicion = 0;
+
+        const alternarPrimero = document.getElementById('alternarPrimero');
+        const alternarAgregarRemover = document.getElementById('alternarAgregarRemover');
+        const entradaNumeroDiv = document.getElementById('entradaNumero');
+        const elementoEntrada = entradaNumeroDiv.querySelector('.entrada-numero');
+        const botonAccion = document.getElementById('botonAccion');
+        const ejecutarAccionBtn = document.getElementById('ejecutarAccionBtn');
+        const contenedorResultado = document.getElementById('contenedorResultado');
+        const todosLosAutos = document.querySelectorAll('.auto');
+
+        todosLosAutos.forEach(auto => {
+            auto.addEventListener('click', function() {
+                todosLosAutos.forEach(a => a.classList.remove('seleccionado'));
+                this.classList.add('seleccionado');
+                autoSeleccionadoActual = {
+                    elemento: this,
+                    nombre: this.getAttribute('data-nombre'),
+                    src: this.src
+                };
+            });
+        });
+
+        alternarPrimero.addEventListener('click', function() {
+            if (esPrimero) {
+                alternarPrimero.textContent = "Último";
+                esPrimero = false;
+            } else {
+                alternarPrimero.textContent = "Primero";
+                esPrimero = true;
+            }
+        });
+
+        alternarAgregarRemover.addEventListener('click', function() {
+            if (esAgregar) {
+                alternarAgregarRemover.textContent = "Remover";
+                ejecutarAccionBtn.textContent = "-";
+                esAgregar = false;
+            } else {
+                alternarAgregarRemover.textContent = "Agregar";
+                ejecutarAccionBtn.textContent = "+";
+                esAgregar = true;
+            }
+        });
+
+        entradaNumeroDiv.addEventListener('click', function(evento) {
+            if (evento.target === entradaNumeroDiv) {
+                if (elementoEntrada.style.display === 'block') {
+                    elementoEntrada.style.display = 'none';
+                } else {
+                    elementoEntrada.style.display = 'block';
+                    elementoEntrada.focus();
+                }
+            }
+        });
+
+        elementoEntrada.addEventListener('click', function(evento) {
+            evento.stopPropagation();
+        });
+
+        ejecutarAccionBtn.addEventListener('click', function() {
+            if (!autoSeleccionadoActual && esAgregar) {
+                alert("Por favor, selecciona un auto primero");
+                return;
+            }
+
+            let posicion = parseInt(elementoEntrada.value);
+
+            if (isNaN(posicion)) {
+                posicion = esPrimero ? 0 : autosSeleccionados.length;
+            }
+
+            posicion = Math.max(0, Math.min(autosSeleccionados.length, posicion));
+
+            if (esAgregar) {
+                const auto = {
+                    nombre: autoSeleccionadoActual.nombre,
+                    src: autoSeleccionadoActual.src
+                };
+
+                if (esPrimero || posicion === 0) {
+                    autosSeleccionados.unshift(auto);
+                } else {
+                    autosSeleccionados.splice(posicion, 0, auto);
+                }
+
+            } else {
+                if (autosSeleccionados.length === 0) {
+                    alert("No hay autos para remover");
+                    return;
+                }
+
+                if (posicion >= 0 && posicion < autosSeleccionados.length) {
+                    autosSeleccionados.splice(posicion, 1);
+                } else {
+                    alert("Posición inválida. Ingresa un número entre 0 y " +
+                        (autosSeleccionados.length - 1));
+                    return;
+                }
+            }
+
+            actualizarVisualizacionResultado();
+
+            todosLosAutos.forEach(a => a.classList.remove('seleccionado'));
+            autoSeleccionadoActual = null;
+            elementoEntrada.value = "";
+            elementoEntrada.style.display = 'none';
+        });
+
+        function actualizarVisualizacionResultado() {
+            contenedorResultado.innerHTML = "";
+
+            if (autosSeleccionados.length === 0) {
+                contenedorResultado.innerHTML = "<p>No hay autos en la lista</p>";
+                return;
+            }
+
+            autosSeleccionados.forEach((auto, indice) => {
+                const itemAuto = document.createElement('div');
+                itemAuto.className = 'item-auto';
+                itemAuto.innerHTML = `
+                    <img src="${auto.src}" alt="${auto.nombre}">
+                    <span>${indice}: ${auto.nombre}</span>
+                `;
+                contenedorResultado.appendChild(itemAuto);
+            });
+        }
+
+        actualizarVisualizacionResultado();
+    </script>
 </body>
+
 </html>
