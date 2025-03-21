@@ -69,51 +69,12 @@
             width: 100%;
         }
 
-        .boton-mas {
-            background-color: black;
-            border-radius: 100px;
-            height: 60px;
-            margin-left: 10px;
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .boton-mas:hover {
-            background-color: green;
-        }
-
-        .boton-menos {
-            background-color: black;
-            border-radius: 100px;
-            height: 60px;
-            margin-left: 10px;
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .boton-menos:hover {
-            background-color: green;
-        }
-
+        .boton-mas,
+        .boton-menos,
         .posicion {
             background-color: black;
             border-radius: 100px;
             height: 60px;
-            margin-right: 10px;
             margin-left: 10px;
             width: 30%;
             display: flex;
@@ -124,10 +85,13 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            position: relative;
         }
 
+        .boton-mas:hover,
+        .boton-menos:hover,
         .posicion:hover {
-            background-color: green;
+            background-color: black;
         }
 
         .opciones {
@@ -206,13 +170,58 @@
             margin-right: 10px;
         }
 
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-right: 10px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: black;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: white;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
         .boton-mas:hover,
         .boton-menos:hover,
         .posicion:hover,
         .botones:hover {
-            background-color: black;
-            border: 2px solid white;
-            box-shadow: 0 0 10px white;
+            box-shadow: 0 0 15px white;
+            transition: box-shadow 0.3s ease;
         }
     </style>
 </head>
@@ -252,10 +261,18 @@
             </div>
             <div class="opciones">
                 <div id="alternarPrimero" class="boton-mas">
-                    Primero
+                    <label class="switch">
+                        <input type="checkbox" id="togglePrimero">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="textoPrimero">Primero</span>
                 </div>
                 <div id="alternarAgregarRemover" class="boton-menos">
-                    Agregar
+                    <label class="switch">
+                        <input type="checkbox" id="toggleAgregarRemover">
+                        <span class="slider"></span>
+                    </label>
+                    <span id="textoAgregarRemover">Agregar</span>
                 </div>
                 <div id="entradaNumero" class="posicion">
                     Posición
@@ -291,6 +308,10 @@
         const ejecutarAccionBtn = document.getElementById('ejecutarAccionBtn');
         const contenedorResultado = document.getElementById('contenedorResultado');
         const todosLosAutos = document.querySelectorAll('.auto');
+        const togglePrimero = document.getElementById('togglePrimero');
+        const toggleAgregarRemover = document.getElementById('toggleAgregarRemover');
+        const textoPrimero = document.getElementById('textoPrimero');
+        const textoAgregarRemover = document.getElementById('textoAgregarRemover');
 
         todosLosAutos.forEach(auto => {
             auto.addEventListener('click', function() {
@@ -304,23 +325,23 @@
             });
         });
 
-        alternarPrimero.addEventListener('click', function() {
-            if (esPrimero) {
-                alternarPrimero.textContent = "Último";
+        togglePrimero.addEventListener('change', function() {
+            if (this.checked) {
+                textoPrimero.textContent = "Último";
                 esPrimero = false;
             } else {
-                alternarPrimero.textContent = "Primero";
+                textoPrimero.textContent = "Primero";
                 esPrimero = true;
             }
         });
 
-        alternarAgregarRemover.addEventListener('click', function() {
-            if (esAgregar) {
-                alternarAgregarRemover.textContent = "Remover";
+        toggleAgregarRemover.addEventListener('change', function() {
+            if (this.checked) {
+                textoAgregarRemover.textContent = "Remover";
                 ejecutarAccionBtn.textContent = "-";
                 esAgregar = false;
             } else {
-                alternarAgregarRemover.textContent = "Agregar";
+                textoAgregarRemover.textContent = "Agregar";
                 ejecutarAccionBtn.textContent = "+";
                 esAgregar = true;
             }
