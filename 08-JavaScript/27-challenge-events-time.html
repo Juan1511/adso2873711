@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <title>Desafío</title>
+    <style>
+        canvas {
+            background-color: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #f2ff3a;
+        }
+
+        .contenedor-juego {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pantalla {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .pantalla h2, .pantalla p {
+            color: #fff;
+            margin: 10px;
+            text-shadow: 0 0 5px #f2ff3a;
+        }
+
+        .pantalla button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2ff3a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #lienzo {
+            display: none;
+        }
+
+        .estadisticas {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        /* Estilo para los emojis */
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+            transform: translate(-50%, -50%);
+            user-select: none;
+        }
+        
+        .estrella {
+            font-size: 10px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>27-Challenge Events Time</h1>
+        </header>
+
+        <section>
+            <div class="contenedor-juego">
+                <div id="pantallaInicio" class="pantalla">
+                    <h2>¡Bienvenido Piloto Espacial!</h2>
+                    <p>Usa las flechas ← → para moverte</p>
+                    <button id="botonInicio">Comenzar Misión</button>
+                </div>
+
+                <div id="areaJuego" style="width: 400px; height: 500px; background-color: #111; border-radius: 10px; box-shadow: 0 0 10px #f2ff3a; position: relative; overflow: hidden; display: none;"></div>
+                <div class="estadisticas" id="puntajeDisplay"></div>
+
+                <div id="pantallaFin" class="pantalla" style="display: none;">
+                    <h2>¡Has perdido!</h2>
+                    <p id="puntajeFinal">Puntaje: 0</p>
+                    <button id="botonReiniciar">Reiniciar</button>
+                    <button id="botonVolverInicio">Volver al Inicio</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const areaJuego = document.getElementById('areaJuego');
+        const pantallaInicio = document.getElementById('pantallaInicio');
+        const pantallaFin = document.getElementById('pantallaFin');
+        const puntajeDisplay = document.getElementById('puntajeDisplay');
+        const puntajeFinal = document.getElementById('puntajeFinal');
+        const botonInicio = document.getElementById('botonInicio');
+        const botonReiniciar = document.getElementById('botonReiniciar');
+        const botonVolverInicio = document.getElementById('botonVolverInicio');
+
+        const estado = {
+            nave: null,
+            asteroides: [],
+            estrellas: [],
+            teclasPulsadas: {},
+            tiempoAnterior: 0,
+            puntaje: 0,
+            enJuego: false,
+            tiempoDesdeUltimoAsteroide: 0
+        };
+
+        const config = {
+            anchoJuego: 400,
+            altoJuego: 500,
+            velocidadNave: 5, 
+            frecuenciaAsteroides: 800,
+            probabilidadAsteroide: 0.02,
+            numeroEstrellas: 50
+        };
+
+        function crearElementoEmoji(emoji, x, y, tamaño, clase = '') {
+            const elemento = document.createElement('div');
+            elemento.className = 'emoji ' + clase;
+            elemento.textContent = emoji;
+            elemento.style.left = x + 'px';
+            elemento.style.top = y + 'px';
+            elemento.style.fontSize = tamaño + 'px';
+            return elemento;
+        }
+
+        function crearNave() {
+            const nave = {
+                x: config.anchoJuego / 2,
+                y: config.altoJuego - 50,
+                ancho: 30,
+                alto: 30,
+                velocidad: config.velocidadNave,
+                vx: 0,
+                elemento: null
+            };
+
+            nave.elemento = crearElementoEmoji('🚀', nave.x, nave.y, nave.ancho);
+            areaJuego.appendChild(nave.elemento);
+            return nave;
+        }
+
+        function crearEstrellas() {
+            const estrellas = [];
+            
+            for (let i = 0; i < config.numeroEstrellas; i++) {
+                const estrella = {
+                    x: Math.random() * config.anchoJuego,
+                    y: Math.random() * config.altoJuego,
+                    tamaño: Math.random() * 2 + 1,
+                    velocidad: Math.random() * 1 + 0.5,
+                    elemento: null
+                };
+                
+                estrella.elemento = crearElementoEmoji('✦', estrella.x, estrella.y, 
+                                                    estrella.tamaño * 3, 'estrella');
+                areaJuego.appendChild(estrella.elemento);
+                estrellas.push(estrella);
+            }
+            
+            return estrellas;
+        }
+
+        function crearAsteroide() {
+            const asteroide = {
+                x: Math.random() * (config.anchoJuego - 20),
+                y: -20,
+                ancho: 20 + Math.random() * 15,
+                alto: 20 + Math.random() * 15,
+                velocidad: 2 + Math.random() * 2,
+                elemento: null
+            };
+            
+            asteroide.elemento = crearElementoEmoji('☄️', asteroide.x, asteroide.y, asteroide.ancho);
+            areaJuego.appendChild(asteroide.elemento);
+            
+            return asteroide;
+        }
+
+        function actualizarNave() {
+            const nave = estado.nave;
+            
+            if (estado.teclasPulsadas['ArrowLeft']) {
+                nave.vx = Math.max(nave.vx - 0.5, -nave.velocidad);
+            } 
+            else if (estado.teclasPulsadas['ArrowRight']) {
+                nave.vx = Math.min(nave.vx + 0.5, nave.velocidad);
+            }
+            else {
+                nave.vx *= 0.9;
+            }
+            
+            nave.x += nave.vx;
+            nave.x = Math.max(0, Math.min(config.anchoJuego - nave.ancho, nave.x));
+            
+            nave.elemento.style.left = nave.x + 'px';
+            nave.elemento.style.top = nave.y + 'px';
+        }
+
+        function actualizarEstrellas() {
+            estado.estrellas.forEach(estrella => {
+                estrella.y += estrella.velocidad;
+                if (estrella.y > config.altoJuego) {
+                    estrella.y = 0;
+                    estrella.x = Math.random() * config.anchoJuego;
+                }
+                estrella.elemento.style.left = estrella.x + 'px';
+                estrella.elemento.style.top = estrella.y + 'px';
+            });
+        }
+
+        function actualizarAsteroides(deltaTiempo) {
+            estado.tiempoDesdeUltimoAsteroide += deltaTiempo;
+            
+            if (estado.tiempoDesdeUltimoAsteroide > config.frecuenciaAsteroides && 
+                Math.random() < config.probabilidadAsteroide) {
+                
+                estado.asteroides.push(crearAsteroide());
+                estado.tiempoDesdeUltimoAsteroide = 0;
+            }
+
+            for (let i = estado.asteroides.length - 1; i >= 0; i--) {
+                const asteroide = estado.asteroides[i];
+                asteroide.y += asteroide.velocidad;
+                asteroide.elemento.style.top = asteroide.y + 'px';
+                
+                if (asteroide.y > config.altoJuego) {
+                    areaJuego.removeChild(asteroide.elemento);
+                    estado.asteroides.splice(i, 1);
+                }
+            }
+        }
+
+        function hayColision() {
+            const nave = estado.nave;
+            
+            return estado.asteroides.some(asteroide => {
+                const distancia = Math.sqrt(
+                    Math.pow((nave.x) - (asteroide.x), 2) +
+                    Math.pow((nave.y) - (asteroide.y), 2)
+                );
+                return distancia < (nave.ancho/2 + asteroide.ancho/2) * 0.8;
+            });
+        }
+
+        function actualizarPuntaje(deltaTiempo) {
+            estado.puntaje += deltaTiempo * 0.002;
+            puntajeDisplay.innerText = `Puntuación: ${Math.floor(estado.puntaje)}`;
+        }
+
+        function bucleJuego(timestamp) {
+            if (!estado.enJuego) return;
+            
+            if (estado.tiempoAnterior === 0) {
+                estado.tiempoAnterior = timestamp;
+            }
+            
+            const deltaTiempo = timestamp - estado.tiempoAnterior;
+            estado.tiempoAnterior = timestamp;
+            
+            actualizarEstrellas();
+            actualizarNave();
+            actualizarAsteroides(deltaTiempo);
+            actualizarPuntaje(deltaTiempo);
+
+            if (hayColision()) {
+                terminarJuego();
+                return;
+            }
+
+            requestAnimationFrame(bucleJuego);
+        }
+
+        function inicializarJuego() {
+            areaJuego.innerHTML = '';
+            
+            estado.asteroides = [];
+            estado.puntaje = 0;
+            estado.tiempoAnterior = 0;
+            estado.tiempoDesdeUltimoAsteroide = 0;
+            estado.enJuego = true;
+            
+            estado.nave = crearNave();
+            estado.estrellas = crearEstrellas();
+            
+            areaJuego.style.display = 'block';
+            pantallaInicio.style.display = 'none';
+            pantallaFin.style.display = 'none';
+        }
+
+        function iniciarJuego() {
+            inicializarJuego();
+            requestAnimationFrame(bucleJuego);
+        }
+
+        function terminarJuego() {
+            estado.enJuego = false;
+            areaJuego.style.display = 'none';
+            pantallaFin.style.display = 'flex';
+            puntajeFinal.innerText = 'Puntaje: ' + Math.floor(estado.puntaje);
+        }
+
+        document.addEventListener('keydown', e => {
+            estado.teclasPulsadas[e.key] = true;
+        });
+
+        document.addEventListener('keyup', e => {
+            estado.teclasPulsadas[e.key] = false;
+        });
+
+        botonInicio.addEventListener('click', iniciarJuego);
+        botonReiniciar.addEventListener('click', iniciarJuego);
+        botonVolverInicio.addEventListener('click', function() {
+            pantallaFin.style.display = 'none';
+            pantallaInicio.style.display = 'flex';
+            areaJuego.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
