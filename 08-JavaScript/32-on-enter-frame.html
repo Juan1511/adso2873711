@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32- animation-frame</title>
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<style>
+    div.pug {
+        background: url('images/animationFrame/Frame.png') no-repeat;
+        background-position-x: 0;
+        border-radius: 0.4rem;
+        height: 200px;
+        width: 100px;
+        margin: 2rem auto;
+    }
+
+    div.controls {
+        margin: 0 auto;
+        width: 202px;
+    }
+</style>
+<body>
+    <nav class="controls">
+        <a href="index.html"> <!-- ../para devolverme  -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>32- animation frame</h1>
+            <h2>Ejecuta código en cada fotograma para animaciones.</h2>
+        </header>
+         <section>
+            <div class="pug"></div>
+            <div class="controls">
+                <button class="left">Run Left</button>
+                <button class="idle">Idle</button>
+                <button class="right">Run Right</button>
+            </div>
+         </section>
+    </main>  
+</body>
+<script>
+    // Elements
+    const idle = document.querySelector('.idle');
+    const left = document.querySelector('.left');
+    const right = document.querySelector('.right');
+    const pug = document.querySelector('.pug');
+
+    // Sprite Congig
+    const frameWidth  = 100;
+    let totalFrames   = 4;
+    let fps           = 6;
+    let currentFrame  = 0;
+    let lastTime      = 0;
+
+    // Events 
+    idle.addEventListener('click', (e) => {
+        totalFrames = 4;
+        fps = 6;
+        pug.style.backgroundPositionY = '0px';
+    });
+
+    left.addEventListener('click', (e) => {
+        totalFrames = 6;
+        fps = 9;
+        pug.style.backgroundPositionY = '-200px';
+    });
+
+    right.addEventListener('click', (e) => {   // Me falta el del saltar 
+        totalFrames = 4;
+        fps = 6;
+        pug.style.backgroundPositionY = '-400px';
+    });
+
+    function animatePug(timestamp) {
+        if (timestamp - lastTime > 1000 / fps) {
+           pug.style.backgroundPositionX = `-${currentFrame * frameWidth}px`;
+           currentFrame = (currentFrame + 1) % totalFrames;
+           lastTime = timestamp;
+           console.log(currentFrame);
+        } 
+        requestAnimationFrame(animatePug);
+    }
+
+    requestAnimationFrame(animatePug);
+
+</script>
+</html>
